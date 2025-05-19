@@ -1,0 +1,36 @@
+{
+    "name": "tawk/tawk-widget",
+    "description": "Tawk.to Widget",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "6.6.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Tawk\\TawkWidget",
+        "label": {
+            "de-DE": "Tawk.to Widget",
+            "en-GB": "Tawk.to Widget"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Tawk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tawk\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "package": "composer run clean && mkdir -p ./TawkWidget && cp -rt ./TawkWidget composer.json src && zip -9 -rq ./TawkWidget/TawkWidget.zip ./TawkWidget",
+        "clean": "rm -rf ./TawkWidget"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}
