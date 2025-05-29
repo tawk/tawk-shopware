@@ -47,28 +47,36 @@ Shopware.Component.register('tawk-widget-selection', {
             return this.systemConfigApiService.getValues('TawkWidget.config');
         },
         async setWidget(e) {
-            await this.systemConfigApiService.saveValues({
-                'TawkWidget.config.pageId' : e.data.pageId
-            });
-            await this.systemConfigApiService.saveValues({
+            return this.systemConfigApiService.saveValues({
+                'TawkWidget.config.pageId' : e.data.pageId,
                 'TawkWidget.config.widgetId' : e.data.widgetId
-            });
+            }).then(() => {
+                e.source.postMessage({
+                    action : 'setDone'
+                }, BASE_URL);
+            }).catch((error) => {
+                console.error(error);
 
-            e.source.postMessage({
-                action : 'setDone'
-            }, BASE_URL);
+                e.source.postMessage({
+                    action : 'setFail'
+                }, BASE_URL);
+            });
         },
         async removeWidget(e) {
-            await this.systemConfigApiService.saveValues({
-                'TawkWidget.config.pageId' : ''
-            });
-            await this.systemConfigApiService.saveValues({
+            return this.systemConfigApiService.saveValues({
+                'TawkWidget.config.pageId' : '',
                 'TawkWidget.config.widgetId' : ''
-            });
+            }).then(() => {
+                e.source.postMessage({
+                    action : 'removeDone'
+                }, BASE_URL);
+            }).catch((error) => {
+                console.error(error);
 
-            e.source.postMessage({
-                action : 'removeDone'
-            }, BASE_URL);
+                e.source.postMessage({
+                    action : 'removeFail'
+                }, BASE_URL);
+            });
         },
         reloadHeight(e) {
             const height = e.data.height;
