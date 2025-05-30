@@ -26,6 +26,10 @@ class TawkWidgetSubscriber implements EventSubscriberInterface
     {
         $config = $this->systemConfigService->get('TawkWidget.config');
 
+        if (!is_array($config)) {
+            return;
+        }
+
         $widgetId = $config['widgetId'] ?? null;
         $pageId = $config['pageId'] ?? null;
 
