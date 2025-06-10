@@ -3,16 +3,17 @@
 namespace Tawk\Subscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Shopware\Storefront\Event\StorefrontRenderEvent;
+
+use Tawk\Service\TawkWidgetConfig;
 
 class TawkWidgetSubscriber implements EventSubscriberInterface
 {
-    private SystemConfigService $systemConfigService;
+    private TawkWidgetConfig $_tawkWidgetConfig;
 
-    public function __construct(SystemConfigService $systemConfigService)
+    public function __construct(TawkWidgetConfig $tawkWidgetConfig)
     {
-        $this->systemConfigService = $systemConfigService;
+        $this->_tawkWidgetConfig = $tawkWidgetConfig;
     }
 
     public static function getSubscribedEvents(): array
@@ -24,7 +25,7 @@ class TawkWidgetSubscriber implements EventSubscriberInterface
 
     public function onStorefrontRender(StorefrontRenderEvent $event): void
     {
-        $config = $this->systemConfigService->get('TawkWidget.config');
+        $config = $this->_tawkWidgetConfig->getConfig();
 
         if (!is_array($config)) {
             return;

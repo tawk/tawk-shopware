@@ -24,8 +24,8 @@ Shopware.Component.register('tawk-widget-selection', {
     async created() {
         const currentValues = await this.getCurrentValues();
 
-        this.widgetId = currentValues['TawkWidget.config.widgetId'];
-        this.pageId = currentValues['TawkWidget.config.pageId'];
+        this.widgetId = currentValues['TawkWidget.config.widgetId'] || '';
+        this.pageId = currentValues['TawkWidget.config.pageId'] || '';
     },
     mounted() {
         window.addEventListener('message', (e) => {
