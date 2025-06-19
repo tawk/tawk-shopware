@@ -6,7 +6,7 @@
 
 <!--Start of Tawk.to Script (1.0.0)-->
 <script type="text/javascript">
-	function loadWidget() {
+	{% if page_id is not null and widget_id is not null %}
 		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 
 		(function () {
@@ -17,10 +17,6 @@
 			s1.setAttribute('crossorigin', '*');
 			s0.parentNode.insertBefore(s1, s0);
 		})();
-	}
-
-	{% if page_id is not null and widget_id is not null %}
-		loadWidget();
 	{% endif %}
 </script>
 <!--End of Tawk.to Script (1.0.0)-->

@@ -7,38 +7,40 @@ Shopware.Component.register('tawk-widget-selection', {
                 id="tawk_widget_customization"
                 ref="tawkIframe"
                 style="border:none; width:100%; margin: 0; padding: 0; margin-top: 24px; min-height: 300px"
-                :src="baseUrl + '/generic/widgets?currentWidgetId=' + widgetId + '&currentPageId=' + pageId + '&transparentBackground=1&pltf=shopware&pltfv=' + platformVersion + '&parentDomain=' + hostname">
+                :src="iframeUrl">
             </iframe>
         </div>
     `,
     inject : ['systemConfigApiService'],
     data() {
         return {
-            baseUrl : BASE_URL,
-            platformVersion : Shopware.Context.app.config.version,
-            hostname : window.location.origin,
-            widgetId : '',
-            pageId : ''
-        }
+            iframeUrl: ''
+        };
     },
     async created() {
         const currentValues = await this.getCurrentValues();
+        const widgetId = currentValues['TawkWidget.config.widgetId'] || '';
+        const pageId = currentValues['TawkWidget.config.pageId'] || '';
 
-        this.widgetId = currentValues['TawkWidget.config.widgetId'] || '';
-        this.pageId = currentValues['TawkWidget.config.pageId'] || '';
+        this.iframeUrl = BASE_URL +
+            '/generic/widgets?currentWidgetId=' + widgetId +
+            '&currentPageId=' + pageId +
+            '&transparentBackground=1&pltf=shopware&pltfv=' + Shopware.Context.app.config.version +
+            '&parentDomain=' + window.location.origin;
     },
     mounted() {
         window.addEventListener('message', (e) => {
-            if (e.origin === BASE_URL) {
-                if (e.data.action === 'setWidget') {
-                    this.setWidget(e);
-                }
-                if (e.data.action === 'removeWidget') {
-                    this.removeWidget(e);
-                }
-                if (e.data.action === 'reloadHeight') {
-                    this.reloadHeight(e);
-                }
+            if (e.origin !== BASE_URL) {
+                return;
+            }
+            if (e.data.action === 'setWidget') {
+                this.setWidget(e);
+            }
+            if (e.data.action === 'removeWidget') {
+                this.removeWidget(e);
+            }
+            if (e.data.action === 'reloadHeight') {
+                this.reloadHeight(e);
             }
         });
     },
@@ -82,6 +84,10 @@ Shopware.Component.register('tawk-widget-selection', {
             const height = e.data.height;
 
             if (!height) {
+                return;
+            }
+
+            if (!this.$refs.tawkIframe.style.height.endsWith('px')) {
                 return;
             }
 
