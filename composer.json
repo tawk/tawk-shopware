@@ -3,7 +3,7 @@
     "description": "Tawk.to Widget",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
-    "license": "MIT",
+    "license": "GPL3",
     "require": {
         "shopware/core": "6.6.*"
     },
@@ -23,10 +23,6 @@
         "psr-4": {
             "Tawk\\Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "package": "composer run clean && mkdir -p ./TawkWidget && cp -rt ./TawkWidget composer.json src && zip -9 -rq ./TawkWidget/TawkWidget.zip ./TawkWidget",
-        "clean": "rm -rf ./TawkWidget"
     },
     "config": {
         "allow-plugins": {
