@@ -7,15 +7,15 @@ retrieve_version() {
 }
 
 echo "Create temporary directory"
-rm -rf $build_dir/tawkto
-mkdir -p $build_dir/tawkto
+rm -rf "$build_dir/tawkto"
+mkdir -p "$build_dir/tawkto"
 
 echo "Copy files"
-cp -rt $build_dir/tawkto composer.json src
+cp -rt "$build_dir/tawkto" composer.json src
 release_version=$(retrieve_version);
-(cd $build_dir/tawkto && zip -9 -rq ../TawkWidget-$release_version.zip .)
+(cd "$build_dir/tawkto" && zip -9 -rq "../TawkWidget-$release_version.zip" .)
 
 echo "Cleaning up"
-rm -rf $build_dir/tawkto
+rm -rf "$build_dir/tawkto"
 
 echo "Done building Shopware!"
