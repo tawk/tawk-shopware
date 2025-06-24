@@ -15,7 +15,7 @@ Don’t have a tawk.to account yet? [Create one here.](https://tawk.to/?utm_sour
 ## Installation
 
 ### Upload the extension
-1. Download the TawkWidget-<release-version>.zip from [latest release](https://github.com/tawk/tawk-shopware/releases).
+1. Download the `TawkWidget-<release-version>.zip` from [latest release](https://github.com/tawk/tawk-shopware/releases).
 2. Go to `Extensions` -> `My Extensions`
 3. Click `Upload extension` and select the downloaded zip file.
 4. Click `Install` for `Tawk.to Widget` and wait for the installation to complete.
