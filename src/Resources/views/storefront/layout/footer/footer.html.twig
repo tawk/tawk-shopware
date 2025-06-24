@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_inner_container %}
+
+{{ parent() }}
+
+<!--Start of Tawk.to Script (1.0.0)-->
+<script type="text/javascript">
+	{% if property_id is not null and widget_id is not null %}
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+
+		(function () {
+			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/{{ property_id|e('js') }}/{{ widget_id|e('js') }}';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+	{% endif %}
+</script>
+<!--End of Tawk.to Script (1.0.0)-->
+
+{% endblock %}
