@@ -32,9 +32,9 @@ class TawkWidgetSubscriber implements EventSubscriberInterface
         }
 
         $widgetId = $config['widgetId'] ?? null;
-        $pageId = $config['pageId'] ?? null;
+        $propertyId = $config['propertyId'] ?? null;
 
         $event->setParameter('widget_id', $widgetId);
-        $event->setParameter('page_id', $pageId);
+        $event->setParameter('property_id', $propertyId);
     }
 }

@@ -20,7 +20,7 @@ class TawkWidgetConfig
 
     public function removeConfig(): void
     {
-        $this->_systemConfigService->delete('TawkWidget.config.pageId');
+        $this->_systemConfigService->delete('TawkWidget.config.propertyId');
         $this->_systemConfigService->delete('TawkWidget.config.widgetId');
     }
 }

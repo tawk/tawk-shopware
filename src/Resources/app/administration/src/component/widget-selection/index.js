@@ -18,13 +18,14 @@ Shopware.Component.register('tawk-widget-selection', {
         };
     },
     async created() {
-        const currentValues = await this.getCurrentValues();
-        const widgetId = currentValues['TawkWidget.config.widgetId'] || '';
-        const pageId = currentValues['TawkWidget.config.pageId'] || '';
+        const {
+            widgetId,
+            propertyId
+        } = await this.getCurrentValues();
 
         this.iframeUrl = BASE_URL +
             '/generic/widgets?currentWidgetId=' + widgetId +
-            '&currentPageId=' + pageId +
+            '&currentPageId=' + propertyId +
             '&transparentBackground=1&pltf=shopware&pltfv=' + Shopware.Context.app.config.version +
             '&parentDomain=' + window.location.origin;
     },
@@ -46,11 +47,16 @@ Shopware.Component.register('tawk-widget-selection', {
     },
     methods : {
         async getCurrentValues() {
-            return this.systemConfigApiService.getValues('TawkWidget.config');
+            const config = await this.systemConfigApiService.getValues('TawkWidget.config');
+
+            return {
+                widgetId : config['TawkWidget.config.widgetId'] || '',
+                propertyId : config['TawkWidget.config.propertyId'] || ''
+            };
         },
         async setWidget(e) {
             return this.systemConfigApiService.saveValues({
-                'TawkWidget.config.pageId' : e.data.pageId,
+                'TawkWidget.config.propertyId' : e.data.pageId,
                 'TawkWidget.config.widgetId' : e.data.widgetId
             }).then(() => {
                 e.source.postMessage({
@@ -66,8 +72,8 @@ Shopware.Component.register('tawk-widget-selection', {
         },
         async removeWidget(e) {
             return this.systemConfigApiService.saveValues({
-                'TawkWidget.config.pageId' : '',
-                'TawkWidget.config.widgetId' : ''
+                'TawkWidget.config.propertyId' : null,
+                'TawkWidget.config.widgetId' : null
             }).then(() => {
                 e.source.postMessage({
                     action : 'removeDone'
