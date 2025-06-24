@@ -13,9 +13,10 @@ mkdir -p "$build_dir/tawkto"
 echo "Copy files"
 cp -rt "$build_dir/tawkto" composer.json src
 release_version=$(retrieve_version);
-(cd "$build_dir/tawkto" && zip -9 -rq "../TawkWidget-$release_version.zip" .)
+cd "$build_dir"
+zip -9 -rq "tawkto-shopware-$release_version.zip" "./tawkto"
 
 echo "Cleaning up"
-rm -rf "$build_dir/tawkto"
+rm -rf "tawkto"
 
 echo "Done building Shopware!"
