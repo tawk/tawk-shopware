@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "license": "GPL3",
     "require": {
-        "shopware/core": "6.6.*"
+        "shopware/core": "^6.7"
     },
     "extra": {
         "shopware-plugin-class": "Tawk\\TawkWidget",
