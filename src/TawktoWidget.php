@@ -8,7 +8,7 @@ use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 use Tawk\Service\TawkWidgetConfig;
 
-class TawkWidget extends Plugin
+class TawktoWidget extends Plugin
 {
     public function uninstall(UninstallContext $uninstallContext): void
     {

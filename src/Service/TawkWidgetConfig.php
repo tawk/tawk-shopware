@@ -15,12 +15,12 @@ class TawkWidgetConfig
 
     public function getConfig(): array
     {
-        return $this->_systemConfigService->get('TawkWidget.config');
+        return $this->_systemConfigService->get('TawktoWidget.config');
     }
 
     public function removeConfig(): void
     {
-        $this->_systemConfigService->delete('TawkWidget.config.propertyId');
-        $this->_systemConfigService->delete('TawkWidget.config.widgetId');
+        $this->_systemConfigService->delete('TawktoWidget.config.propertyId');
+        $this->_systemConfigService->delete('TawktoWidget.config.widgetId');
     }
 }

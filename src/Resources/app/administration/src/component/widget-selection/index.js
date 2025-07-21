@@ -47,17 +47,17 @@ Shopware.Component.register('tawk-widget-selection', {
     },
     methods : {
         async getCurrentValues() {
-            const config = await this.systemConfigApiService.getValues('TawkWidget.config');
+            const config = await this.systemConfigApiService.getValues('TawktoWidget.config');
 
             return {
-                widgetId : config['TawkWidget.config.widgetId'] || '',
-                propertyId : config['TawkWidget.config.propertyId'] || ''
+                widgetId : config['TawktoWidget.config.widgetId'] || '',
+                propertyId : config['TawktoWidget.config.propertyId'] || ''
             };
         },
         async setWidget(e) {
             return this.systemConfigApiService.saveValues({
-                'TawkWidget.config.propertyId' : e.data.pageId,
-                'TawkWidget.config.widgetId' : e.data.widgetId
+                'TawktoWidget.config.propertyId' : e.data.pageId,
+                'TawktoWidget.config.widgetId' : e.data.widgetId
             }).then(() => {
                 e.source.postMessage({
                     action : 'setDone'
@@ -72,8 +72,8 @@ Shopware.Component.register('tawk-widget-selection', {
         },
         async removeWidget(e) {
             return this.systemConfigApiService.saveValues({
-                'TawkWidget.config.propertyId' : null,
-                'TawkWidget.config.widgetId' : null
+                'TawktoWidget.config.propertyId' : null,
+                'TawktoWidget.config.widgetId' : null
             }).then(() => {
                 e.source.postMessage({
                     action : 'removeDone'

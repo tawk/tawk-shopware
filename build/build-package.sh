@@ -7,22 +7,22 @@ retrieve_version() {
 }
 
 echo "Create temporary directory"
-rm -rf "$build_dir/TawkWidget"
-mkdir -p "$build_dir/TawkWidget"
+rm -rf "$build_dir/TawktoWidget"
+mkdir -p "$build_dir/TawktoWidget"
 
 echo "Copy files"
-cp -rt "$build_dir/TawkWidget" composer.json src
+cp -rt "$build_dir/TawktoWidget" composer.json src
 release_version=$(retrieve_version);
 cd "$build_dir"
 if [ "$1" = "--marketplace" ]; then
-	cd "TawkWidget"
-	zip -9 -rq "../TawkWidget.zip" .
+	cd "TawktoWidget"
+	zip -9 -rq "../TawktoWidget.zip" .
 	cd ..
 else
-	zip -9 -rq "tawkto-shopware-$release_version.zip" . -i "./TawkWidget/*"
+	zip -9 -rq "tawkto-shopware-$release_version.zip" . -i "./TawktoWidget/*"
 fi
 
 echo "Cleaning up"
-rm -rf "TawkWidget"
+rm -rf "TawktoWidget"
 
 echo "Done building Shopware!"
