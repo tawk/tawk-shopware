@@ -3,7 +3,7 @@
     "description": "Tawk.to Widget",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
-    "license": "GPL3",
+    "license": "GPL-3.0-only",
     "require": {
         "shopware/core": "^6.7"
     },
